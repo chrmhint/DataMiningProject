@@ -36,7 +36,7 @@ namespace DataMining_Project1
 
             //let the user know conversion is complete
             Console.WriteLine("Conversion complete.");
-            Console.ReadLine();
+            
 
         }
     }
