@@ -1,4 +1,5 @@
 ﻿//TODO: capability to loop over 10k times to remove all tags from every document in the set
+//TODO: communicate with Python script -> send stripped documents for stop word removal
 
 using System;
 using System.IO;
@@ -7,9 +8,9 @@ using HtmlAgilityPack;
 
 namespace DataMining_Project1
 {
-    class Program
+    class HTMLStripper
     {
-        static void Main(string[] args)
+        public void RemoveHTML() 
         {
             //HTML document to read
             var htmlDoc = new HtmlDocument();
