@@ -15,7 +15,7 @@ namespace DataMiningProject
             string python = @"python.exe";
 
             // python app to call 
-            string myPythonApp = "sum.py";
+            string myPythonApp = @"sum.py";
 
             // dummy parameters to send Python script 
             int x = 2;

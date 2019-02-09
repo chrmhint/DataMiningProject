@@ -2,7 +2,6 @@
  * MAINTAINS COMMUNICATIONS WITH PYTHON OVERSEER
  */
 
- //TODO: add communication capability
 using DataMining_Project1;
 using System;
 using System.Collections.Generic;
@@ -25,11 +24,12 @@ namespace DataMiningProject
             //strip files of HTML tags
             HTMLStripper h = new HTMLStripper();
             h.RemoveHTML();
-
+            
             //communicate with python program
             Communicator c = new Communicator();
             c.communicate();
 
+            
             Console.ReadLine();
 
         }

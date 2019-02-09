@@ -1,10 +1,9 @@
 ﻿//TODO: capability to loop over 10k times to remove all tags from every document in the set
-//TODO: communicate with Python script -> send stripped documents for stop word removal
+
 
 using System;
 using System.IO;
-using System.Text;
-using HtmlAgilityPack;
+
 
 namespace DataMining_Project1
 {
@@ -12,28 +11,73 @@ namespace DataMining_Project1
     {
         public void RemoveHTML() 
         {
-            //HTML document to read
-            var htmlDoc = new HtmlDocument();
 
-            //get all text from file
-            string text = System.IO.File.ReadAllText("assignment1.html");
 
-            //load text in context of HTML
-            htmlDoc.LoadHtml(text);
-
-            //find all instances of the given tag type -> <html> because it surrounds every other tag
-            var htmlNodes = htmlDoc.DocumentNode.SelectNodes("//html");
-
+            StreamReader reader = new StreamReader(@"assignment1.html");
             //output file
             StreamWriter outFile = new StreamWriter("test.txt");
 
-            //write all inner text to the output file
-            foreach (var node in htmlNodes)
+
+
+            string line;
+            while((line = reader.ReadLine()) != null)
             {
-                outFile.WriteLine(node.InnerText);
+                //trim whitespace from line
+                line = line.TrimStart();
+
+                
+                //look for html
+                int pos = line.IndexOf("<");
+
+               //while open tags are found
+               while(pos > -1)
+                {
+                    
+                    //find closing tag
+                    int endPos = line.IndexOf(">");
+
+                    if (endPos > -1)
+
+                    {
+                        //if tag is at the end of the line
+                        if (endPos == line.Length - 1)
+                        {
+                            line = line.Substring(0, pos);
+
+                        }
+
+                        //tag-ception
+                        else
+                        {
+                            line = line.Substring(endPos + 1);
+
+                        }
+                    }
+
+                    //sucks if you're just trying to show something is less than something lmao
+                    else
+                    {
+                        
+                        line = " ";
+                    }
+
+                    //find next instance
+                    pos = line.IndexOf("<");
+
+
+                }
+
+                if (line != "")
+                {
+                    outFile.WriteLine(line);
+
+                }
+                outFile.Flush();
 
             }
+            
 
+          
             //let the user know conversion is complete
             Console.WriteLine("Conversion complete.");
             
