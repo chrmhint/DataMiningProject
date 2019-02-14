@@ -9,13 +9,13 @@ namespace DataMiningProject
 {
     class Communicator
     {
-        public void communicate()
+        public void communicate(string pythonFile)
         {
             // full path of python interpreter 
             string python = @"python.exe";
 
             // python app to call 
-            string myPythonApp = @"sum.py";
+            //string myPythonApp = @"sum.py";
 
             // dummy parameters to send Python script 
             int x = 2;
@@ -31,7 +31,7 @@ namespace DataMiningProject
             // start python app with 3 arguments  
             // 1st arguments is pointer to itself,  
             // 2nd and 3rd are actual arguments we want to send 
-            myProcessStartInfo.Arguments = myPythonApp + " " + x + " " + y;
+            myProcessStartInfo.Arguments = pythonFile + " " + x + " " + y;
 
             Process myProcess = new Process();
             // assign start information to the process 

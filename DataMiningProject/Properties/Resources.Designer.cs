@@ -101,6 +101,16 @@ namespace DataMiningProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] proj1 {
+            get {
+                object obj = ResourceManager.GetObject("proj1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] python {
             get {
                 object obj = ResourceManager.GetObject("python", resourceCulture);

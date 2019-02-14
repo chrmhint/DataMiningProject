@@ -21,13 +21,16 @@ namespace DataMiningProject
         {
             Console.WriteLine("Overseer active");
 
+            FileProcessor f = new FileProcessor();
+            f.processFiles();
+
             //strip files of HTML tags
-            HTMLStripper h = new HTMLStripper();
-            h.RemoveHTML();
+            //HTMLStripper h = new HTMLStripper();
+            
             
             //communicate with python program
-            Communicator c = new Communicator();
-            c.communicate();
+           // Communicator c = new Communicator();
+           // c.communicate();
 
             
             Console.ReadLine();

@@ -9,11 +9,11 @@ namespace DataMining_Project1
 {
     class HTMLStripper
     {
-        public void RemoveHTML() 
+        public void RemoveHTML(string fileName)
         {
 
 
-            StreamReader reader = new StreamReader(@"assignment1.html");
+            StreamReader reader = new StreamReader(fileName);
             //output file
             StreamWriter outFile = new StreamWriter("test.txt");
 
