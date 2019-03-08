@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EnglishStemmer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="bin\Debug\netcoreapp2.1\proj1.py" />
   </ItemGroup>
 

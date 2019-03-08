@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 using System.IO;
 using DataMining_Project1;
+using System.Collections.Specialized;
 
 namespace DataMiningProject
 {
     class FileProcessor
     {
+        string[] files = new string[9000];
 
-        public void processFiles() {
+        public void processFiles(ref Dictionary<string, int>[] terms) {
 
            /* wbkd
             * -> folders with different school roles
@@ -17,8 +20,16 @@ namespace DataMiningProject
             */
 
             HTMLStripper h = new HTMLStripper();
-            Communicator c = new Communicator();
+            StopWordRemover t = new StopWordRemover();
 
+            //dictionary array
+            //each index corresponds to file number
+            //<string> is the term itself
+            //<int> is the frequency
+            
+
+
+            int num = 0;
             //get each directory in the file webkb
             string[] directoryNames = Directory.GetDirectories(@"webkb");
 
@@ -37,9 +48,11 @@ namespace DataMiningProject
                     foreach (string f in fileNames)
                     {
                         //remove html
-                        h.RemoveHTML(f);
+                        terms[num] = new Dictionary<string, int>();
+                        string fileName = h.RemoveHTML(f, num, ref terms);
 
-                        //c.communicate(proj1.py);
+                        num++;
+
                     }
                     
 
@@ -47,6 +60,9 @@ namespace DataMiningProject
                 }
                 
             }
+
+
+            Console.WriteLine("Files Processed");
 
         }
     }

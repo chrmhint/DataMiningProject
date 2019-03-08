@@ -1,7 +1,9 @@
 ﻿//TODO: capability to loop over 10k times to remove all tags from every document in the set
 
 
+using DataMiningProject;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 
@@ -9,17 +11,25 @@ namespace DataMining_Project1
 {
     class HTMLStripper
     {
-        public void RemoveHTML(string fileName)
+        
+
+        public string RemoveHTML(string fileName, int fileNumber, ref Dictionary<string, int>[] d)
         {
 
-
+            //input file
             StreamReader reader = new StreamReader(fileName);
+
             //output file
-            StreamWriter outFile = new StreamWriter("test.txt");
+            string test = "files\file" + fileNumber.ToString() + ".txt";
+           
 
-
+            StreamWriter outFile = new StreamWriter(@"files\file" + fileNumber.ToString() + ".txt");
+            
+            StopWordRemover t = new StopWordRemover();
+            string contents = " ";
 
             string line;
+
             while((line = reader.ReadLine()) != null)
             {
                 //trim whitespace from line
@@ -69,18 +79,23 @@ namespace DataMining_Project1
 
                 if (line != "")
                 {
-                    outFile.WriteLine(line);
-
+                    
+                    contents = contents + " " + line;
                 }
-                outFile.Flush();
+                
 
             }
             
-
-          
-            //let the user know conversion is complete
-            Console.WriteLine("Conversion complete.");
+            //stem contents of file
+            contents = t.CleanText(contents, ref d, fileNumber);
             
+            
+            outFile.Write(contents);
+            outFile.Close();
+
+            return contents;
+
+  
 
         }
     }
