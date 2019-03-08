@@ -2,7 +2,6 @@
 
 
 using DataMiningProject;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -13,7 +12,7 @@ namespace DataMining_Project1
     {
         
 
-        public string RemoveHTML(string fileName, int fileNumber, ref Dictionary<string, int>[] d)
+        public string RemoveHTML(string fileName, int fileNumber, ref Dictionary<string, double>[] d, ref Dictionary<string, int> w)
         {
 
             //input file
@@ -22,7 +21,7 @@ namespace DataMining_Project1
             //output file
             string test = "files\file" + fileNumber.ToString() + ".txt";
            
-
+            
             StreamWriter outFile = new StreamWriter(@"files\file" + fileNumber.ToString() + ".txt");
             
             StopWordRemover t = new StopWordRemover();
@@ -74,9 +73,8 @@ namespace DataMining_Project1
                     //find next instance
                     pos = line.IndexOf("<");
 
-
                 }
-
+               //only add non-empty lines
                 if (line != "")
                 {
                     
@@ -87,7 +85,7 @@ namespace DataMining_Project1
             }
             
             //stem contents of file
-            contents = t.CleanText(contents, ref d, fileNumber);
+            contents = t.CleanText(contents, ref d, fileNumber, ref w);
             
             
             outFile.Write(contents);
@@ -95,7 +93,6 @@ namespace DataMining_Project1
 
             return contents;
 
-  
 
         }
     }

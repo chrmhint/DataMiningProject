@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
+﻿
 namespace DataMiningProject
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Collections;
-    using System.IO;
     using System.Text;
    
 
@@ -26,13 +20,14 @@ namespace DataMiningProject
                                                                 "thing", "this", "to", "too", "very", "was", "we", "well", "what",
                                                                 "when", "where", "who", "will", "with", "you", "your", "on", "they",
                                                                 "through", "those", "can", "should", "has", "go", "all", "doing", "take",
-                                                                "which"
+                                                                "which", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", 
+                                                                "saturday"
                                                                };
 
 
   
         // Removes stop words from the specified search string.
-		public string CleanText(string searchedWords, ref Dictionary<string, int>[] terms, int fileNumber)
+		public string CleanText(string searchedWords, ref Dictionary<string, double>[] terms, int fileNumber, ref Dictionary<string, int> w)
         {
             Porter2 porter = new Porter2();
             
@@ -73,6 +68,8 @@ namespace DataMiningProject
             myStopWordsCol.AddRange(stopWordsArrary);
 
             StringBuilder sb = new StringBuilder();
+
+
             for (int i = 0; i < words.Length; i++)
             {
                 string word = words[i].ToLowerInvariant().Trim();
@@ -90,15 +87,28 @@ namespace DataMiningProject
                 //if word is already present in list, update word value
                 if (terms[fileNumber].ContainsKey(n))
                 {
-                    //terms[n] = terms[n] + 1;
                     terms[fileNumber][n] = terms[fileNumber][n] + 1;
                 }
                 //else, add a new pair to the list
                 else
                 {
-                    //terms.Add(n, 1);
                     terms[fileNumber].Add(n, 1);
+
+                    //when a new word is added, see if it's in the word-appearance array
+                    //increment the value if it already exists in the array
+                    if (w.ContainsKey(n))
+                    {
+                        w[n] = w[n] + 1;
+                    }
+
+                    //otherwise, add the word with a value of 1
+                    else
+                    {
+                        w.Add(n, 1);
+                    }
                 }
+
+                
             }
 
 

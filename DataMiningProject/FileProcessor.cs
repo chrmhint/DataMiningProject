@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Text;
 using System.IO;
 using DataMining_Project1;
-using System.Collections.Specialized;
+
 
 namespace DataMiningProject
 {
     class FileProcessor
     {
         string[] files = new string[9000];
-
-        public void processFiles(ref Dictionary<string, int>[] terms) {
+        
+        public void processFiles(ref Dictionary<string, double>[] terms, ref Dictionary<string, int> w) {
 
            /* wbkd
             * -> folders with different school roles
@@ -48,8 +46,8 @@ namespace DataMiningProject
                     foreach (string f in fileNames)
                     {
                         //remove html
-                        terms[num] = new Dictionary<string, int>();
-                        string fileName = h.RemoveHTML(f, num, ref terms);
+                        terms[num] = new Dictionary<string, double>();
+                        string fileName = h.RemoveHTML(f, num, ref terms, ref w);
 
                         num++;
 
