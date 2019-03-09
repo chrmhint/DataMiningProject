@@ -5,6 +5,7 @@
  * Authors: Christina Hinton & Brayden Faulkner
  */
 
+ //TODO: only include top used words
 
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,8 @@ using System.Linq;
 
 namespace DataMiningProject
 {
-
     class Overseer
     {
-
-
         static void Main(string[] args)
         {
             Console.WriteLine("Overseer active");
@@ -53,6 +51,7 @@ namespace DataMiningProject
                     Console.WriteLine("Calculation complete.");
                     break;
                 }
+
                 //write heading for each file, for readability
                 results.WriteLine();
                 results.WriteLine("Document " + fileNumber);
@@ -64,31 +63,32 @@ namespace DataMiningProject
                     foreach (KeyValuePair<string, double> kvp in terms[fileNumber].OrderBy(key => key.Value))
                     {
                         //change key to term frequency of each word
-                        terms[fileNumber][kvp.Key] = kvp.Value / numWords;
-
+                        double x = kvp.Value / numWords;
+                        
                         //get number of appearances of the given word
                         words.TryGetValue(kvp.Key, out int k);
 
                         //calculate IDF for each word
-                        terms[fileNumber][kvp.Key] = (Math.Log10(8282 / k) / Math.Log10(2)) * terms[fileNumber][kvp.Key];
+                        terms[fileNumber][kvp.Key] = (Math.Log10(7 / k) / Math.Log10(2)) * x;
 
                         //write results to file
                         results.Write(terms[fileNumber][kvp.Key] + " ");
                         
                         results.Flush();
+
                     }
                 
                 //move to next file
                 fileNumber++;
             }
- 
+            
             results.Close();
+            
             Console.WriteLine("Complete");
 
             Console.ReadLine();
 
         }
-
 
 
     }

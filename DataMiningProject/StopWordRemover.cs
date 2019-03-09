@@ -16,8 +16,6 @@ namespace DataMiningProject
 
     public class StopWordRemover
     {
-        
-
         //list of common stop words
         private static string[] stopWordsArrary = new string[] { "a", "about", "actually", "after", "also", "am", "an",
                                                                 "and", "any", "are", "as", "at", "be", "because", "but", "by",
@@ -75,7 +73,6 @@ namespace DataMiningProject
             myStopWordsCol.AddRange(stopWordsArrary);
 
             StringBuilder sb = new StringBuilder();
-
 
             for (int i = 0; i < words.Length; i++)
             {

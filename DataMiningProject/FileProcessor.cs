@@ -5,6 +5,8 @@
  * Authors: Christina Hinton & Brayden Faulkner
  */
 
+//TODO: add distinctions between each class: student, faculty, staff, department, course, project, other
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,14 +35,23 @@ namespace DataMiningProject
             //<int> is the frequency
             
 
-
+            //total number of files
             int num = 0;
+
+            //total number of classes (should be 7)
+            int classNum = 0;
+
             //get each directory in the file webkb
             string[] directoryNames = Directory.GetDirectories(@"webkb");
 
             //find each directory in the current directory
             foreach (string i in directoryNames){
                 
+                //ceate new element for each new class
+                terms[classNum] = new Dictionary<string, double>();
+
+                //number of files in each class
+                int n = 0;
                 //folders in each class
                 string[] schoolNames = Directory.GetDirectories(i);
 
@@ -53,21 +64,23 @@ namespace DataMiningProject
                     foreach (string f in fileNames)
                     {
                         //remove html
-                        terms[num] = new Dictionary<string, double>();
-                        string fileName = h.RemoveHTML(f, num, ref terms, ref w);
+                        string fileName = h.RemoveHTML(f, classNum, n, ref terms, ref w);
+                        n++;
+
 
                         num++;
-
+                        
                     }
                     
 
 
                 }
+                classNum++;
                 
             }
 
-
-            Console.WriteLine("Files Processed");
+            Console.WriteLine(num + " files processed");
+           
 
         }
     }
