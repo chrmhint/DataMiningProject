@@ -23,12 +23,11 @@ namespace DataMiningProject
             Console.WriteLine("Overseer active");
             Console.WriteLine("Processing files...");
 
-   
             //dictionary array
             //index holds file number
             //key is the word
             //value is number of times word appears
-            Dictionary<string, double>[] terms = new Dictionary<string, double>[8282]; //TODO: dyanamic sizing
+            Dictionary<string, double>[] terms = new Dictionary<string, double>[10000]; //10,000 documents
 
             //list of words and number of document appearances
             Dictionary<string, int> words = new Dictionary<string, int>();
@@ -47,6 +46,11 @@ namespace DataMiningProject
             //write results to output file
             foreach(Dictionary<string, double> fileNum in terms)
             {
+                if(fileNum == null)
+                {
+                    Console.WriteLine("Calculation complete.");
+                    break;
+                }
                 //write heading for each file, for readability
                 results.WriteLine();
                 results.WriteLine("Document " + fileNumber);
@@ -60,7 +64,6 @@ namespace DataMiningProject
                         //change key to term frequency of each word
                         terms[fileNumber][kvp.Key] = kvp.Value / numWords;
 
-                    
                         //get number of appearances of the given word
                         words.TryGetValue(kvp.Key, out int k);
 
