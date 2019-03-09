@@ -1,4 +1,11 @@
-﻿//TODO: capability to loop over 10k times to remove all tags from every document in the set
+﻿/*
+ * HTMLSTRIPPER.CS
+ * STRIPS A GIVEN DOCUMENT OF ITS HTML TAGS
+ * CALLS STOP WORD REMOVER TO REMOVE STOP WORDS AND STEM 
+ * SAVES TO A FILE FOR READABILITY
+ * 
+ * Authors: Christina Hinton & Brayden Faulkner
+ */
 
 
 using DataMiningProject;

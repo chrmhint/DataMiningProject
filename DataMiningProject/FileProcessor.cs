@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * FILEPROCESSOR.CS
+ * GOES THROUGH EACH FILE IN THE DIRECTORY, AND CALLS HTMLSTRIPPER TO REMOVE HTML TAGS
+ * 
+ * Authors: Christina Hinton & Brayden Faulkner
+ */
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using DataMining_Project1;

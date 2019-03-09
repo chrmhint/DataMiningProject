@@ -1,6 +1,8 @@
 ﻿/*OVERSEER.CS
  * STARTS FILE PROCESSING
  * CALCULATES TF-IDF
+ * 
+ * Authors: Christina Hinton & Brayden Faulkner
  */
 
 

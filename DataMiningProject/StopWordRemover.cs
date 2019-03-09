@@ -1,4 +1,11 @@
-﻿
+﻿/*
+ * STOPWORDREMOVER.CS
+ * REMOVES STOP WORDS, SENDS EACH WORD TO BE STEMMED
+ * POPULATES EACH DICTIONARY ELEMENT WITH THE WORDS AND THEIR 
+ * NUMBER OF APPEARANCES IN THE DOCUMENT
+ * 
+ * Authors: Christina Hinton & Brayden Faulkner
+ */
 namespace DataMiningProject
 {
     using System;
