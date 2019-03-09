@@ -1,5 +1,6 @@
 ﻿/*OVERSEER.CS
- * MAINTAINS COMMUNICATIONS WITH PYTHON OVERSEER
+ * STARTS FILE PROCESSING
+ * CALCULATES TF-IDF
  */
 
 
@@ -54,7 +55,7 @@ namespace DataMiningProject
                 //number of words in each document
                 int numWords = fileNum.Count;
                 
-                    foreach (KeyValuePair<string, double> kvp in terms[fileNumber].OrderByDescending(key => key.Value))
+                    foreach (KeyValuePair<string, double> kvp in terms[fileNumber].OrderBy(key => key.Value))
                     {
                         //change key to term frequency of each word
                         terms[fileNumber][kvp.Key] = kvp.Value / numWords;
