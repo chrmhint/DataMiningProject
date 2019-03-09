@@ -57,6 +57,10 @@ namespace DataMiningProject
                 results.WriteLine("Document " + fileNumber);
                 results.Flush();
 
+                //write to console
+                Console.WriteLine();
+                Console.WriteLine("Document " + fileNumber);
+
                 //number of words in each document
                 int numWords = fileNum.Count;
                 int count = 0;
@@ -73,18 +77,18 @@ namespace DataMiningProject
                         words.TryGetValue(kvp.Key, out int k);
 
                         //calculate IDF for each word
-                        terms[fileNumber][kvp.Key] = (Math.Log10(7 / k) / Math.Log10(2)) * x;
+                        terms[fileNumber][kvp.Key] = (Math.Log10(7/ k) / Math.Log10(2)) * x;
 
                         //write results to file
                         results.Write(terms[fileNumber][kvp.Key] + " ");
     
                         results.Flush();
-                    /*
+                    
                         if(terms[fileNumber][kvp.Key] > 0)
                             {
                                 Console.WriteLine(kvp);
                             }
-                    */
+                    
                         count++;
                     }
                 
@@ -93,7 +97,8 @@ namespace DataMiningProject
             }
             
             results.Close();
-            
+
+            Console.WriteLine();
             Console.WriteLine("Complete");
 
             Console.ReadLine();
