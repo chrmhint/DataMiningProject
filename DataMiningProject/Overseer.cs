@@ -59,9 +59,13 @@ namespace DataMiningProject
 
                 //number of words in each document
                 int numWords = fileNum.Count;
-                
-                    foreach (KeyValuePair<string, double> kvp in terms[fileNumber].OrderBy(key => key.Value))
+                int count = 0;
+                    foreach (KeyValuePair<string, double> kvp in terms[fileNumber].OrderByDescending(key => key.Value))
                     {
+                        if(count > 1000)
+                        {
+                            break;
+                        }
                         //change key to term frequency of each word
                         double x = kvp.Value / numWords;
                         
@@ -73,9 +77,15 @@ namespace DataMiningProject
 
                         //write results to file
                         results.Write(terms[fileNumber][kvp.Key] + " ");
-                        
+    
                         results.Flush();
-
+                    /*
+                        if(terms[fileNumber][kvp.Key] > 0)
+                            {
+                                Console.WriteLine(kvp);
+                            }
+                    */
+                        count++;
                     }
                 
                 //move to next file
