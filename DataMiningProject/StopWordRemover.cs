@@ -26,7 +26,7 @@ namespace DataMiningProject
                                                                 "when", "where", "who", "will", "with", "you", "your", "on", "they",
                                                                 "through", "those", "can", "should", "has", "go", "all", "doing", "take",
                                                                 "which", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", 
-                                                                "saturday"
+                                                                "saturday", "##############################################################################"
                                                                };
 
 
@@ -73,7 +73,7 @@ namespace DataMiningProject
             myStopWordsCol.AddRange(stopWordsArrary);
 
             StringBuilder sb = new StringBuilder();
-
+            
             for (int i = 0; i < words.Length; i++)
             {
                 string word = words[i].ToLowerInvariant().Trim();
@@ -87,12 +87,13 @@ namespace DataMiningProject
             string[] newWords = s.Split(wordSeparators, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string n in newWords){
-                //find term frequency
+                
                 //if word is already present in list, update word value
                 if (terms[fileNumber].ContainsKey(n))
                 {
                     terms[fileNumber][n] = terms[fileNumber][n] + 1;
                 }
+
                 //else, add a new pair to the list
                 else
                 {

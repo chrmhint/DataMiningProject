@@ -5,7 +5,6 @@
  * Authors: Christina Hinton & Brayden Faulkner
  */
 
- //TODO: only include top used words
 
 using System;
 using System.Collections.Generic;
@@ -66,8 +65,10 @@ namespace DataMiningProject
                 int count = 0;
                     foreach (KeyValuePair<string, double> kvp in terms[fileNumber].OrderByDescending(key => key.Value))
                     {
+                        //only calculate the top 1000 words in the document
                         if(count > 1000)
                         {
+                            Console.WriteLine("Limit Reached");
                             break;
                         }
                         //change key to term frequency of each word
@@ -84,11 +85,13 @@ namespace DataMiningProject
     
                         results.Flush();
                     
+                        //only print the words with the highest weights
                         if(terms[fileNumber][kvp.Key] > 0)
                             {
                                 Console.WriteLine(kvp);
                             }
                     
+                          
                         count++;
                     }
                 

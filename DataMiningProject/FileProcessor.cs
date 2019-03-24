@@ -5,7 +5,6 @@
  * Authors: Christina Hinton & Brayden Faulkner
  */
 
-//TODO: add distinctions between each class: student, faculty, staff, department, course, project, other
 
 using System;
 using System.Collections.Generic;
@@ -67,11 +66,9 @@ namespace DataMiningProject
                         string fileName = h.RemoveHTML(f, classNum, n, ref terms, ref w);
                         n++;
 
-
                         num++;
                         
                     }
-                    
 
 
                 }

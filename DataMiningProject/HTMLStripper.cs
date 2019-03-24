@@ -90,13 +90,9 @@ namespace DataMining_Project1
             //stemmed contents of file
             contents = t.CleanText(contents, ref d, fileNumber, ref w);
 
-            //StreamWriter outFile = new StreamWriter(@"files\file" + fileNumber.ToString() + ".txt");
+          
 
-            //outFile.Write(contents);
-
-            //outFile.Close();
-
-            
+            //if first file in class, simply write to file
             if (num == 0)
             {
                 
@@ -107,6 +103,7 @@ namespace DataMining_Project1
                 outFile.Close();
             }
 
+            //otherwise, append the text
             else
             {
                 
