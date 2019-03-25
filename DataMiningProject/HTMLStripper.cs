@@ -17,7 +17,7 @@ namespace DataMining_Project1
 {
     class HTMLStripper
     {
-        public string RemoveHTML(string fileName, int fileNumber, int num, ref Dictionary<string, double>[] d, ref Dictionary<string, int> w)
+        public string RemoveHTML(string fileName, int fileNumber, ref Dictionary<string, double>[] d, ref Dictionary<string, int> w, ref Dictionary<string, int> a)
         {
 
             //input file
@@ -88,30 +88,20 @@ namespace DataMining_Project1
             }
             
             //stemmed contents of file
-            contents = t.CleanText(contents, ref d, fileNumber, ref w);
+            contents = t.CleanText(contents, ref d, fileNumber, ref w, ref a);
 
           
 
-            //if first file in class, simply write to file
-            if (num == 0)
-            {
-                
-                StreamWriter outFile = new StreamWriter(@"files\file" + fileNumber.ToString() + ".txt");
-                
-                outFile.Write(contents);
+            //write to file
 
-                outFile.Close();
-            }
-
-            //otherwise, append the text
-            else
-            {
+            StreamWriter outFile = new StreamWriter(@"files\file" + fileNumber.ToString() + ".txt");
                 
-                StreamWriter outFile = File.AppendText(@"files\file" + fileNumber.ToString() + ".txt");
-                outFile.Write(contents);
+            outFile.Write(contents);
 
-                outFile.Close();
-            }
+            outFile.Close();
+            
+
+          
             
             return contents;
 

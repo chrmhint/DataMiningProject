@@ -32,7 +32,7 @@ namespace DataMiningProject
 
   
         // Removes stop words from the specified search string.
-		public string CleanText(string searchedWords, ref Dictionary<string, double>[] terms, int fileNumber, ref Dictionary<string, int> w)
+		public string CleanText(string searchedWords, ref Dictionary<string, double>[] terms, int fileNumber, ref Dictionary<string, int> w, ref Dictionary<string, int> a)
         {
             Porter2 porter = new Porter2();
             
@@ -87,8 +87,17 @@ namespace DataMiningProject
             string[] newWords = s.Split(wordSeparators, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string n in newWords){
-                
+
                 //if word is already present in list, update word value
+                if (a.ContainsKey(n))
+                {
+                    a[n] = a[n] + 1;
+                }
+                else
+                {
+                    a.Add(n, 1);
+                }
+
                 if (terms[fileNumber].ContainsKey(n))
                 {
                     terms[fileNumber][n] = terms[fileNumber][n] + 1;
